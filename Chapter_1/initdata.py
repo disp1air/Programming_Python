@@ -7,3 +7,9 @@ db = {}
 db['bob'] = bob
 db['sue'] = sue
 db['tom'] = tom
+
+print('---', __name__)
+
+if __name__ == '__main__':
+    for key in db:
+        print(key, '=>\n', db[key])
