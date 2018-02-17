@@ -24,7 +24,7 @@ class Input:                # имитирует входной файл
         self.text = input
 
     def read(self, size=None):
-        if size = None:
+        if size == None:
             res, self.text = self.text, ''
         else:
             res, self.text = self.text[:size], self.text[size:]
@@ -38,13 +38,13 @@ class Input:                # имитирует входной файл
             res, self.text = self.text[:eoln+1], self.text[eoln+1:]
         return res
 
-    def redirect(function, pargs, kargs, input):
-        savestreams = sys.stdin, sys.stdout
-        sys.stdin = Input(input)
-        sys.stdout = Output()
-        try:
-            result = function(*pargs, **kargs)
-            output = sys.stdout.text
-        finally:
-            sys.stdin, sys.stdout = savestreams
-        return (result, output)
+def redirect(function, pargs, kargs, input):
+    savestreams = sys.stdin, sys.stdout
+    sys.stdin = Input(input)
+    sys.stdout = Output()
+    try:
+        result = function(*pargs, **kargs)
+        output = sys.stdout.text
+    finally:
+        sys.stdin, sys.stdout = savestreams
+    return (result, output)
